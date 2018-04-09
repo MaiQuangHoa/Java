@@ -20,7 +20,8 @@ public class Calculator extends javax.swing.JFrame {
     boolean CongStatus = false;
     boolean TruStatus = false;
     boolean SoStatus = false; // Nhận biết số 1 và số 2
-    int So1, So2, Kq;
+    int So1, So2;
+    double Kq;
     String Info = "";
     public Calculator() {
         initComponents();
@@ -290,37 +291,55 @@ public class Calculator extends javax.swing.JFrame {
 
     private void btnBangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBangActionPerformed
             // TODO add your handling code here:
-         if(!Status)
-         {
-             So1 = Integer.parseInt(txtInfo.getText());
-         
-         }
+        So2 = Integer.parseInt(Info);
+        if(NhanStatus)
+            Kq = So1 * So2;
+        if(ChiaStatus)
+            Kq = So1 * 1.0 / So2;
+        if(CongStatus)
+            Kq = So1 + So2;
+        if(TruStatus)
+            Kq = So1 - So2;
+        txtInfo.setText(Double.toString(Kq));
     }//GEN-LAST:event_btnBangActionPerformed
 
     private void btnChiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiaActionPerformed
         // TODO add your handling code here:
-        ChiaStatus = true;        
+        ChiaStatus = true;    
+        So1 = Integer.parseInt(Info);
+        txtInfo.setText("");
+        Info = "";
     }//GEN-LAST:event_btnChiaActionPerformed
 
     private void btnNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanActionPerformed
         // TODO add your handling code here:
-       NhanStatus = true;
+        NhanStatus = true;
+        So1 = Integer.parseInt(Info);
+        txtInfo.setText("");
+        Info = "";
     }//GEN-LAST:event_btnNhanActionPerformed
 
     private void btnCongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCongActionPerformed
         // TODO add your handling code here:
-      
+        CongStatus = true;
+        So1 = Integer.parseInt(Info);
+        txtInfo.setText("");
+        Info = "";
     }//GEN-LAST:event_btnCongActionPerformed
 
     private void btnTruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTruActionPerformed
         // TODO add your handling code here:
-       
+        TruStatus = true;
+        So1 = Integer.parseInt(Info);
+        txtInfo.setText("");
+        Info = "";
     }//GEN-LAST:event_btnTruActionPerformed
 
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
         // TODO add your handling code here:
         Status = false;
-        So1 = So2 = Kq = 0;
+        So1 = So2 = 0;
+        Kq = 0;
         Info = "";
         txtInfo.setText("0");
     }//GEN-LAST:event_btnCActionPerformed
@@ -375,9 +394,7 @@ public class Calculator extends javax.swing.JFrame {
         Input("0");
     }//GEN-LAST:event_btn0ActionPerformed
 
-    
-    
-    
+  
     public void Input(String i)
     {       
         Info += i;
